@@ -502,8 +502,8 @@ struct luna_Debug {
 #define LUNA_VERSION_MINOR	LUAI_TOSTR(LUNA_VERSION_MINOR_N)
 #define LUNA_VERSION_RELEASE	LUAI_TOSTR(LUNA_VERSION_RELEASE_N)
 
-#define LUNA_VERSION	"Luna v 0.4"
-#define LUNA_RELEASE	"Luna v 0.4"
+#define LUNA_VERSION	"Luna v 0.6"
+#define LUNA_RELEASE	"Luna v 0.6"
 
 
 /******************************************************************************
