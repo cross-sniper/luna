@@ -76,7 +76,7 @@ MYLIBS= -ldl -lreadline
 
 
 CC= gcc
-CFLAGS= -Wall -O2 $(MYCFLAGS) -fno-stack-protector -fno-common -march=native
+CFLAGS= -lcurl -Wall -O2 $(MYCFLAGS) -fno-stack-protector -fno-common -march=native
 AR= ar rc
 RANLIB= ranlib
 RM= rm -f
@@ -116,7 +116,7 @@ $(CORE_T): $(CORE_O) $(AUX_O) $(LIB_O)
 	$(RANLIB) $@
 
 $(LUA_T): $(LUA_O) $(CORE_T)
-	$(CC) -o $@ $(MYLDFLAGS) $(LUA_O) $(CORE_T) $(LIBS) $(MYLIBS) $(DL)
+	$(CC) -o $@ $(MYLDFLAGS) $(LUA_O) $(CORE_T) $(LIBS) $(MYLIBS) $(DL) -lcurl
 
 
 clean:

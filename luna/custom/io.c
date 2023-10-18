@@ -57,11 +57,42 @@ static int p_input(luna_State *L) {
     return 0; // Error occurred
 }
 
-
-
 #include <curl/curl.h>
 
-static int luna_curl_request(luna_State *L) {
-    return 1;
+// This callback function will be called by libcurl when data is received.
+static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) {
+    size_t totalSize = size * nmemb;
+    luna_pushlstring((luna_State*)userp, (const char*)contents, totalSize);
+    return totalSize;
 }
 
+static int luna_curl_request(luna_State *L) {
+    const char *url = lunaL_checkstring(L, 1);
+
+    // Initialize libcurl
+    CURL *curl = curl_easy_init();
+    if (!curl) {
+        return 0;  // Error occurred
+    }
+
+    // Set the URL
+    curl_easy_setopt(curl, CURLOPT_URL, url);
+
+    // Set the write callback function to capture the response data
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, L);  // Pass the luna state as user data
+
+    // Perform the request
+    CURLcode res = curl_easy_perform(curl);
+
+    // Check for errors
+    if (res != CURLE_OK) {
+        curl_easy_cleanup(curl);
+        return 0;  // Error occurred
+    }
+
+    // Cleanup
+    curl_easy_cleanup(curl);
+
+    return 1;  // Success; the response data is on the luna stack
+}

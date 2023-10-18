@@ -12,6 +12,8 @@
 #include <stdarg.h>
 #include <stddef.h>
 
+#define LUNA_VERSION  "Luna v 0.7"
+#define LUNA_RELEASE  "Luna v 0.7"
 
 #define LUNA_COPYRIGHT	LUNA_RELEASE "\nLuna, a modified version of lua(Lua 5.4.6), by cross hedgehog"
 #define LUNA_AUTHORS	"cross hedgehog"
@@ -502,8 +504,6 @@ struct luna_Debug {
 #define LUNA_VERSION_MINOR	LUAI_TOSTR(LUNA_VERSION_MINOR_N)
 #define LUNA_VERSION_RELEASE	LUAI_TOSTR(LUNA_VERSION_RELEASE_N)
 
-#define LUNA_VERSION	"Luna v 0.6"
-#define LUNA_RELEASE	"Luna v 0.6"
 
 
 /******************************************************************************
