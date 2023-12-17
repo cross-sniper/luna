@@ -31,14 +31,8 @@ CWARNGCC= \
 	-Wno-aggressive-loop-optimizations \
 
 
-# The next warnings are neither valid nor needed for C++
-CWARNSC= -Wdeclaration-after-statement \
-	-Wmissing-prototypes \
-	-Wnested-externs \
-	-Wstrict-prototypes \
-	-Wc++-compat \
-	-Wold-style-definition \
 
+CWARNSC= 
 
 CWARNS= $(CWARNSCPP) $(CWARNSC) $(CWARNGCC)
 
@@ -70,12 +64,12 @@ LOCAL = $(TESTS) $(CWARNS)
 
 
 # enable Linux goodies
-MYCFLAGS= $(LOCAL) -std=c99 -DLUA_USE_LINUX -DLUA_USE_READLINE
+MYCFLAGS= $(LOCAL) -DLUA_USE_LINUX -DLUA_USE_READLINE
 MYLDFLAGS= $(LOCAL) -Wl,-E
-MYLIBS= -ldl -lreadline
+MYLIBS= -ldl -lreadline -lcurl
 
 
-CC= gcc
+CC= g++
 CFLAGS= -lcurl -Wall -O2 $(MYCFLAGS) -fno-stack-protector -fno-common -march=native
 AR= ar rc
 RANLIB= ranlib

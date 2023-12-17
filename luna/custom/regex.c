@@ -1,8 +1,6 @@
 #include <regex.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../lua.h"
-#include "../lauxlib.h"
 
 regex_t regex;
 int reti;

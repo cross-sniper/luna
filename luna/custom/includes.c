@@ -1,5 +1,7 @@
 #include "io.c"
 #include "regex.c"
+#include "server.cpp"
+#include "server2.cpp"
 
 static const lunaL_Reg base_funcs[] = {
   //custom functions start
@@ -8,7 +10,11 @@ static const lunaL_Reg base_funcs[] = {
   {"input", p_input},
   {"request", luna_curl_request},
   {"regex",match_regex},
-  
+  {"bind",bind},
+  {"run",run},
+  {"cbind",cbind},
+  {"crun",crun},
+
   //custom functions end
   {"assert", lunaB_assert},
   {"collectgarbage", lunaB_collectgarbage},
